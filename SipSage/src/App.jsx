@@ -5,6 +5,7 @@ import Main from './components/Main';
 import Contact from './components/Contact';
 import DrinkDetails from './components/DrinkDetails';
 import Drinks from './components/Drinks';
+import Meals from './components/Meals'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/drinks" element={<Drinks />} />
         <Route path="/drinks/:id" element={<DrinkDetails />} />
+        <Route path="/Meals/" element={<Meals /> } />"
       </Routes>
     </Router>
   );

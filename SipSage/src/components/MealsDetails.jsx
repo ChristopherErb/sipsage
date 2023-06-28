@@ -6,7 +6,7 @@ const mealPage = () => {
     let { id } = useParams()
     useEffect(()=>{
         const getMeal = async() => {
-          const response = await axios.get('www.themealdb.com/api/json/v1/1')
+          const response = await axios.get('https://www.themealdb.com/api/json/v1/1')
           setMeal(response.data.results[id])
           console.log(response)
         }

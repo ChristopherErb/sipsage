@@ -6,8 +6,8 @@ const drinkPage = () => {
     let { id } = useParams()
     useEffect(()=>{
         const getdrink = async() => {
-          const response = await axios.get('www.thecocktaildb.com/api/json/v1/1')
-          setDrink(response.data.results[id])
+            const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail');
+            setDrink(response.data.results[id])
           console.log(response)
         }
         getdrink()
