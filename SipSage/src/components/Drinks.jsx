@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Drinks = () => {
+  
   const [drinks, setDrinks] = useState(null);
   const navigate = useNavigate();
 
