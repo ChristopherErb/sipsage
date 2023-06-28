@@ -1,3 +1,4 @@
+
 const Contact = () => {
 
 
@@ -16,3 +17,4 @@ const Contact = () => {
     )
 }
 export default Contact
+
