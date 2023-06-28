@@ -10,9 +10,9 @@ const Drinks = () => {
   useEffect(() => {
     const getDrinks = async () => {
       try {
-        const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/');
+        const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail');
         setDrinks(response.data.drinks);
-        console.log(response.data);
+        console.log(response);
       } catch (error) {
         console.error('Error fetching drinks:', error);
       }
