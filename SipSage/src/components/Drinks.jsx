@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const drinks = () => {
+const Drinks = () => {
 
 const [drinks, setdrinks] = useState(null)
 
@@ -37,4 +37,4 @@ const showDrinks = (drink) => {
     ) : (<h3>Getting thirsty... </h3>)
 }
 
-export default DrinksList
+export default Drinks
