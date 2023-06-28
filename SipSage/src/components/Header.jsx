@@ -1,14 +1,13 @@
- 
 import React from 'react';
 import Nav from './Nav';
 
-const Header = () => {
+function Header() {
   return (
-    <header className="header">
-      <h2>Home</h2>
+    <header>
+      <h1>SipSage</h1>
       <Nav />
     </header>
   );
-};
+}
 
 export default Header;

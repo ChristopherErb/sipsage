@@ -1,13 +1,12 @@
-// homepage.jsx
 import React from 'react';
 
-const Home = () => {
+function Home() {
   return (
-    <div className="homepage">
-      <h1>.SipSage</h1>
-      <p>Find your perfect drink!</p>
+    <div>
+      <h2>Welcome to SipSage!</h2>
+      <p>Find delicious food and drink combinations.</p>
     </div>
   );
-};
+}
 
 export default Home;
