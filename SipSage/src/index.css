@@ -5,7 +5,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #2A2E45;
+background-image: url(https://imgc.artprintimages.com/img/print/bottles-of-liquor-de-luan-s-bar-ballydowane-county-waterford-ireland_u-l-q1bm2hp0.jpg?background=f3f3f3);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,7 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
+/* 
 a {
   font-weight: 500;
   color: #646cff;
@@ -66,4 +67,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

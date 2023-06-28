@@ -8,18 +8,40 @@ import Drinks from './components/Drinks';
 import Meals from './components/Meals'
 
 const App = () => {
+  const navStyle = {
+    background: '#7A542E',
+    padding: '10px',
+    fontWeight: 'bold',
+    backdropFilter: 'blur(5px)',  // Apply backdrop blur effect
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Add a semi-transparent background color
+  };
+
+  const ulStyle = {
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    justifyContent: 'center',
+  };
+
+  const linkStyle = {
+    textDecoration: 'none',
+    color: 'white',
+    padding: '10px 20px',
+  };
+
   return (
     <Router>
-      <nav>
-        <ul>
+      <nav style={navStyle}>
+        <ul style={ulStyle}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" style={linkStyle}>Home</Link>
           </li>
           <li>
-            <Link to="/main">Menu</Link>
+            <Link to="/main" style={linkStyle}>Menu</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" style={linkStyle}>Contact</Link>
           </li>
         </ul>
       </nav>
