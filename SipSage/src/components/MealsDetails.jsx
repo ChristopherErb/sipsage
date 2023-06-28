@@ -1,12 +1,3 @@
- 
-import React from 'react';
-
-function MealsDetails(props) {
-  // Component code goes here
-}
-
-export default MealsDetails;
-=======
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
