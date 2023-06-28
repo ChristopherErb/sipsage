@@ -1,40 +1,42 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Drinks = () => {
+  const [drinks, setDrinks] = useState(null);
+  const navigate = useNavigate();
 
-const [drinks, setdrinks] = useState(null)
+  useEffect(() => {
+    const getDrinks = async () => {
+      try {
+        const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/');
+        setDrinks(response.data.drinks);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching drinks:', error);
+      }
+    };
 
-useEffect(()=> {
-    const getdrinks = async () => {
-    const response = await axios.get('www.thecocktaildb.com/api/json/v1/1')
-    setdrinks(response.data.results)
-    console.log(response)
-    console.log(drinks)
-    }
-    getdrinks()
-}, [])
+    getDrinks();
+  }, []);
 
-let navigate = useNavigate()
+  const showDrinks = (drink) => {
+    navigate(`${drink.idDrink}`);
+  };
 
-const showDrinks = (drink) => {
-    navigate(`${drink.idDrink}`)
-}
-
-    return drinks ? (
-        <div className="drinksListPage">
-            <h2>List of drinks</h2>
-            {
-                drinks.map((drink) => (
-                    <div className="card" onClick={() => showDrinks(drink)} key={drink.idDrink}>
-                        <h3>{drink.strDrink}</h3>
-                        <img src={drink.strDrinkThumb} alt={drink.strDrink} />
-                    </div>
-                ))
-            }
+  return drinks ? (
+    <div className="drinksListPage">
+      <h2>List of drinks</h2>
+      {drinks.map((drink) => (
+        <div className="drinkCard" onClick={() => showDrinks(drink)} key={drink.idDrink}>
+          <h3>{drink.strDrink}</h3>
+          <img src={drink.strDrinkThumb} alt={drink.strDrink} />
         </div>
-    ) : (<h3>Getting thirsty... </h3>)
-}
+      ))}
+    </div>
+  ) : (
+    <h3>Getting thirsty...</h3>
+  );
+};
 
-export default Drinks
+export default Drinks;

@@ -1,34 +1,37 @@
+import React from 'react';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Main from './components/Main';
+import Contact from './components/Contact';
+import DrinkDetails from './components/DrinkDetails';
+import Drinks from './components/Drinks';
 
-import { useState } from 'react'
-import './App.css'
-// import Header from './components/Header'
-// import Main from './components/Main'
-import Contact from './components/Contact'
-// import DrinkDetails from './components/DrinkDetails'
-// import Drinks from './components/Drinks'
-// import Home from './components/Home'
-// import Meals from './components/Meals'
-// import MealsDetails from './components/MealsDetails'
-
-function App() {
- 
-
+const App = () => {
   return (
-  <div className='app'>
-    <header>
-    {/* <Header /> */}
-    </header>
-    <main className='appMain'>
-    {/* <Main /> */}
-    <Contact /> 
-    {/* <DrinkDetails />
-    <Drinks />
-    <Home />
-    <Meals />
-    <MealsDetails /> */}
-    </main>
-  </div>
-  )
-}
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/main">Menu</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav>
 
-export default App
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/main/*" element={<Main />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/drinks" element={<Drinks />} />
+        <Route path="/drinks/:id" element={<DrinkDetails />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;

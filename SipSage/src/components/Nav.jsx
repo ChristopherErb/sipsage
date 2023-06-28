@@ -1,27 +1,15 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const Nav = () => {
+function Nav() {
   return (
-    <nav className="nav">
+    <nav>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/drinks">Drinks</Link>
-        </li>
-        <li>
-          <Link to="/meals">Food</Link>
-        </li>
-        
-        <li>
-          <Link to="/contact">About</Link>
-        </li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/Meals">Food</a></li>
+        <li><a href="/Drinks">Drinks</a></li>
       </ul>
     </nav>
   );
-};
+}
 
 export default Nav;
