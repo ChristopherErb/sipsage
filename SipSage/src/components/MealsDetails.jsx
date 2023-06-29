@@ -1,48 +1,90 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
-const mealPage = () => {
-    const [meal, setmeal] = useState('')
-    let { id } = useParams()
-    useEffect(()=>{
-        const getMeal = async() => {
-          const response = await axios.get('https://www.themealdb.com/api/json/v1/1')
-          setMeal(response.data.results[id])
-          console.log(response)
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+
+const MealPage = () => {
+  const [meal, setMeal] = useState(null);
+  let { id } = useParams();
+
+  useEffect(() => {
+    const getMeal = async () => {
+      try {
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+        setMeal(response.data.meals[0]);
+        console.log(response);
+      } catch (error) {
+        console.error('Error fetching meal:', error);
+      }
+    };
+
+    getMeal();
+  }, [id]);
+
+  const styles = {
+    mealDetailsPage: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: '20px',
+      padding: '20px',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      borderRadius: '5px',
+      backdropFilter: 'blur(5px)',
+    },
+    heading: {
+      fontSize: '24px',
+    marginBottom: '10px',
+    color: 'white',
+    },
+    image: {
+      width: '200px',
+    height: '200px',
+    objectFit: 'cover',
+    borderRadius: '5px',
+    marginBottom: '10px',
+    },
+    tag: {
+      fontSize: '1.2rem',
+      marginBottom: '0.5rem',
+    },
+    instruction: {
+      marginBottom: '1rem',
+    },
+    button: {
+      textDecoration: 'none', 
+    color: 'white',
+    },
+  };
+
+  return meal ? (
+    <div style={styles.mealDetailsPage}>
+      <h2 style={styles.heading}>{meal.strMeal}</h2>
+      <img src={meal.strMealThumb} alt={meal.strMeal} style={styles.image} />
+      <p style={styles.instruction}>{meal.strInstructions}</p>
+      <h3 style={styles.tag}>{meal.strTags}</h3>
+      <h3 style={styles.tag}>{meal.strCategory}</h3>
+      <h3 style={styles.tag}>{meal.strArea}</h3>
+      {[...Array(20)].map((_, index) => {
+        const ingredient = meal[`strIngredient${index + 1}`];
+        const measure = meal[`strMeasure${index + 1}`];
+        if (ingredient) {
+          return (
+            <h5 key={index}>
+              {measure} of {ingredient}
+            </h5>
+          );
         }
-        getmeal()
-      },[])
-return meal ? (
-    <div className="mealDetailsPage">
-        <h2>{meal.strMeal}</h2>
-        <img src={meal.strMealThumb} alt={meal.strMeal} />
-        <h3>{meal.strTags}</h3>
-        <h3>{meal.strCategory}</h3>
-        <h3>{meal.strArea}</h3>
-        <h5>{meal.strMeasure1} of {meal.strIngredient1}</h5>
-        <h5>{meal.strMeasure2} of {meal.strIngredient2}</h5>
-        <h5>{meal.strMeasure3} of {meal.strIngredient3}</h5>
-        <h5>{meal.strMeasure4} of {meal.strIngredient4}</h5>
-        <h5>{meal.strMeasure5} of {meal.strIngredient5}</h5>
-        <h5>{meal.strMeasure6} of {meal.strIngredient6}</h5>
-        <h5>{meal.strMeasure7} of {meal.strIngredient7}</h5>
-        <h5>{meal.strMeasure7} of {meal.strIngredient8}</h5>
-        <h5>{meal.strMeasure9} of {meal.strIngredient9}</h5>
-        <h5>{meal.strMeasure10} of {meal.strIngredient10}</h5>
-        <h5>{meal.strMeasure11} of {meal.strIngredient11}</h5>
-        <h5>{meal.strMeasure12} of {meal.strIngredient12}</h5>
-        <h5>{meal.strMeasure13} of {meal.strIngredient13}</h5>
-        <h5>{meal.strMeasure14} of {meal.strIngredient14}</h5>
-        <h5>{meal.strMeasure15} of {meal.strIngredient15}</h5>
-        <h5>{meal.strMeasure16} of {meal.strIngredient16}</h5>
-        <h5>{meal.strMeasure17} of {meal.strIngredient17}</h5>
-        <h5>{meal.strMeasure18} of {meal.strIngredient18}</h5>
-        <h5>{meal.strMeasure19} of {meal.strIngredient19}</h5>
-        <h5>{meal.strMeasure20} of {meal.strIngredient20}</h5>
-        <h3>{meal.strInstructions}</h3>
-        <button><Link to='/meals'>meals</Link></button>
+        return null;
+      })}
+      
+      <button style={styles.button}>
+        <Link to="/meals">Meals</Link>
+      </button>
     </div>
-) : <h5>Making meal...</h5>
-}
-export default mealPage
- 
+  ) : (
+    <h5>Loading meal...</h5>
+  );
+};
+
+export default MealPage;
