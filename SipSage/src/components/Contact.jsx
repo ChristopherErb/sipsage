@@ -99,7 +99,7 @@ const Contact = () => {
 
   const buttonStyle = {
     padding: '8px 16px',
-    backgroundColor: '#333',
+   
     color: '#fff',
     border: 'none',
     borderRadius: '4px',

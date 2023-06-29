@@ -35,10 +35,10 @@ const Drinks = () => {
   const drinkCardStyle = {
     cursor: 'pointer',
     padding: '10px',
-    backdropFilter: 'blur(5px)',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: '5px',
     textAlign: 'center',
+    transition: 'transform 0.3s',
   };
 
   const drinkTitleStyle = {
@@ -47,11 +47,14 @@ const Drinks = () => {
   };
 
   const headingStyle = {
-    fontSize: '24px',  
+    fontSize: '24px',
     marginBottom: '10px',
     color: 'white',
-    backdropFilter: 'blur(5px)',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.transform = 'none';
   };
 
   return drinks ? (
@@ -59,7 +62,15 @@ const Drinks = () => {
       <h2 style={headingStyle}>Drinks</h2>
       <div style={drinksListStyle}>
         {drinks.map((drink) => (
-          <div style={drinkCardStyle} onClick={() => showDrinks(drink)} key={drink.idDrink}>
+          <div
+            style={drinkCardStyle}
+            onClick={() => showDrinks(drink)}
+            key={drink.idDrink}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={handleMouseLeave}
+          >
             <h3 style={drinkTitleStyle}>{drink.strDrink}</h3>
             <img src={drink.strDrinkThumb} alt={drink.strDrink} />
           </div>

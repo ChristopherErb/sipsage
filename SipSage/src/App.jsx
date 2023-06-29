@@ -6,14 +6,15 @@ import Contact from './components/Contact';
 import DrinkDetails from './components/DrinkDetails';
 import Drinks from './components/Drinks';
 import Meals from './components/Meals'
+import MealsDetails from './components/MealsDetails'
 
 const App = () => {
   const navStyle = {
     background: '#7A542E',
     padding: '10px',
     fontWeight: 'bold',
-    backdropFilter: 'blur(5px)',  // Apply backdrop blur effect
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Add a semi-transparent background color
+    backdropFilter: 'blur(5px)',   
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',   
   };
 
   const ulStyle = {
@@ -52,7 +53,8 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/drinks" element={<Drinks />} />
         <Route path="/drinks/:id" element={<DrinkDetails />} />
-        <Route path="/Meals/" element={<Meals /> } />"
+        <Route path="/meals/" element={<Meals /> } />"
+        <Route path="/meals/:id" element={<MealsDetails /> } />"
       </Routes>
     </Router>
   );

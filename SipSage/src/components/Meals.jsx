@@ -30,7 +30,6 @@ const Meals = () => {
     gap: '20px',
     marginTop: '20px',
     maxWidth: '800px',
-    
   };
 
   const mealCardStyle = {
@@ -40,18 +39,31 @@ const Meals = () => {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: '5px',
     textAlign: 'center',
+    transition: 'transform 0.3s',
+    zIndex: '1',
   };
 
   const mealTitleStyle = {
     fontSize: '16px',
     marginBottom: '10px',
   };
+
   const headingStyle = {
-    fontSize: '24px',  
+    fontSize: '24px',
     marginBottom: '10px',
     color: 'white',
     backdropFilter: 'blur(5px)',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  };
+
+  const handleMouseEnter = (e) => {
+    e.currentTarget.style.transform = 'scale(1.05)';
+    e.currentTarget.style.zIndex = '2';
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.style.transform = 'none';
+    e.currentTarget.style.zIndex = '1';
   };
 
   return meals ? (
@@ -59,7 +71,13 @@ const Meals = () => {
       <h2 style={headingStyle}>Meals</h2>
       <div style={mealListStyle}>
         {meals.map((meal) => (
-          <div style={mealCardStyle} onClick={() => showMeals(meal)} key={meal.idMeal}>
+          <div
+            style={mealCardStyle}
+            onClick={() => showMeals(meal)}
+            key={meal.idMeal}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <h3 style={mealTitleStyle}>{meal.strMeal}</h3>
             <img src={meal.strMealThumb} alt={meal.strMeal} />
           </div>
